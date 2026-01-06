@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/greet', (req, res) => {
-  res.send('hello greets');
+  res.send('hello greeats');
 });
 
 // Start server only if not in test mode
