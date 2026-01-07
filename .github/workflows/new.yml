@@ -35,5 +35,5 @@ jobs:
           git config user.name "fauzihazim"
           git config user.email "fauzihazim28@gmail.com"
           git fetch origin new
-          git checkout master
+          git merge origin/new --no-ff --no-edit
           git push origin master
