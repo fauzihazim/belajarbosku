@@ -32,11 +32,11 @@ jobs:
 
       - name: Merge new into master
         run: |
-          git config user.name "fauzihazim"
-          git config user.email "fauzihazim28@gmail.com"
+          git config --global user.name "fauzihazim"
+          git config --global user.email "fauzihazim28@gmail.com"
           git fetch origin master
           git branch -a
           git fetch origin new
           git branch -a
           git merge origin/new --allow-unrelated-histories --no-ff --no-edit 
-          git push origin master
+          git push origin master --force
