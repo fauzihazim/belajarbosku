@@ -1,57 +1,17 @@
 name: Auto Merge new -> master
 
 on:
-  push:
-    branches: [ new ]
   workflow_dispatch:
 
 permissions:
-  contents: write   # 👈 required for pushing
-
-# jobs:
-#   build-and-test:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v4
-#         with:
-#           node-version: '18'
-#       - run: npm install
-#       - run: npm test
-
-#   merge-to-master:
-#     needs: build-and-test
-#     runs-on: ubuntu-latest
-#     if: success()
-#     steps:
-#       - name: Checkout master
-#         uses: actions/checkout@v4
-#         with:
-#           ref: master
-#           token: ${{ secrets.GITHUB_TOKEN }}
-
-#       - name: Merge new into master
-#         run: |
-#           git config --global user.name "fauzihazim"
-#           git config --global user.email "fauzihazim28@gmail.com"
-#           git fetch origin master
-#           git branch -a
-#           git fetch origin new
-#           git branch -a
-#           git checkout master
-
-#       - name: 123aa
-#         run: |
-#           git merge origin/new --allow-unrelated-histories
-#           git push origin master
-
+  contents: write
+  
 jobs:
   build:
       runs-on: ubuntu-latest
       strategy:
         matrix:
           node-version: [22.x]
-          # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
       steps:
       - uses: actions/checkout@v4
@@ -64,7 +24,7 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
       - name: Upload test results (only on failure)
-        if: failure()  # Runs only if tests failed
+        if: failure()
         run: echo "fails bro"
 
   sync_develop:
@@ -74,7 +34,7 @@ jobs:
       - name: Checkout source branch
         uses: actions/checkout@v4
         with:
-          ref: new # Checkout the source branch
+          ref: new
 
       - name: Configure Git
         run: |
@@ -89,4 +49,4 @@ jobs:
           git checkout master
           git reset origin/new
           git push origin master --force
-          
+
