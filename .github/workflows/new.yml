@@ -39,6 +39,9 @@ jobs:
           git fetch origin new
           git branch -a
           git checkout master
+          
+      - name: 123aa
+        run: |
           git pull origin master
           git merge origin/new 
           git push origin master
