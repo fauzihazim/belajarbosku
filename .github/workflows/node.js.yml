@@ -4,16 +4,15 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  # push:
+  #   branches: [ "master" ]
+  # pull_request:
+  #   branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [22.x]
@@ -31,4 +30,24 @@ jobs:
     - run: npm test
     - name: Upload test results (only on failure)
       if: failure()  # Runs only if tests failed
-      run: echo "fails"
+      run: echo "fails bro"
+  
+  commit-to-master:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Branch Master
+        run: git checkout master
+      - name: Git add .
+        run: git add .
+      - name: Commit to Master
+        run: git commit -m "new push"
+      - name: Push to Master
+        run: git push origin master
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Build Success
+      run: echo "Deploy Run"
