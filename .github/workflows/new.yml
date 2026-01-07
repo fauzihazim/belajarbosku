@@ -44,6 +44,6 @@ jobs:
           git fetch origin master
           git branch -a
           git checkout master
-          git Merge origin/new
+          git merge origin/new
           git push origin master --force
 
