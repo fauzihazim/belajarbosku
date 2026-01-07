@@ -42,6 +42,5 @@ jobs:
 
       - name: 123aa
         run: |
-          git pull origin master
           git merge origin/new --allow-unrelated-histories
           git push origin master
