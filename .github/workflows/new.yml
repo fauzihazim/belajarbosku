@@ -39,7 +39,7 @@ jobs:
           git fetch origin new
           git branch -a
           git merge origin/new --allow-unrelated-histories --no-ff --no-edit 
-          git push origin master --force
+          git push origin master
       
       - name: Chcek branch
         run: git branch -a
