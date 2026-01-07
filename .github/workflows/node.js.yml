@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [22.x]
@@ -32,3 +30,10 @@ jobs:
     - name: Upload test results (only on failure)
       if: failure()  # Runs only if tests failed
       run: echo "fails"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Build Success
+      run: echo "Deploy Run"
