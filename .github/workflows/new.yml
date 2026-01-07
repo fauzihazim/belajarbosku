@@ -87,5 +87,5 @@ jobs:
           git fetch origin master
           git branch -a
           git checkout master
-          git reset --hard origin/new
-          git push origin master --force
+          git reset origin/new
+          git push origin master
