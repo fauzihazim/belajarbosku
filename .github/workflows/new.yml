@@ -38,5 +38,7 @@ jobs:
           git branch -a
           git fetch origin new
           git branch -a
+          git checkout master
+          git pull origin master
           git merge origin/new --allow-unrelated-histories --no-ff --no-edit 
           git push origin master --force
