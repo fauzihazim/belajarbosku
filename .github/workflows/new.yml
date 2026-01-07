@@ -62,5 +62,5 @@ jobs:
         run: |
           git fetch origin master
           git checkout master
-          git merge new
+          git merge new  --allow-unrelated-histories
           git push origin master
