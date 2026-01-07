@@ -35,5 +35,7 @@ jobs:
           git config user.name "fauzihazim"
           git config user.email "fauzihazim28@gmail.com"
           git fetch origin new
-          git branch -a
           git push origin master
+      
+      - name: Chcek branch
+        run: git branch -a
