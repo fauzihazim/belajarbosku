@@ -36,6 +36,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout new branch
+        uses: actions/checkout@v4
+        with:
+          ref: new
+
       - name: Git initialize
         run: git init
       - name: Add origin
