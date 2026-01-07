@@ -3,11 +3,11 @@ const app = express();
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('hallo index 123 ssasas 121212 ababab 123 aabb');
+  res.send('hallo index');
 });
 
 app.get('/greet', (req, res) => {
-  res.send('hello greeats 123');
+  res.send('hello greet');
 });
 
 // Start server only if not in test mode
