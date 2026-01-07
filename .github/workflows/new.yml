@@ -1,0 +1,42 @@
+name: Auto Merge new -> master
+
+on:
+  push:
+    branches: [ new ]
+  workflow_dispatch:
+
+permissions:
+  contents: write   # 👈 required for pushing
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm test
+
+  merge-to-master:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge new into master
+        run: |
+          git config user.name "fauzihazim"
+          git config user.email "fauzihazim28@gmail.com"
+          git fetch origin master
+          git branch -a
+          git fetch origin new
+          git branch -a
+          git merge origin/new --allow-unrelated-histories --no-ff --no-edit 
+          git push origin master
