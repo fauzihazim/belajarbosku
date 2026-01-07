@@ -34,6 +34,7 @@ jobs:
         run: |
           git config user.name "fauzihazim"
           git config user.email "fauzihazim28@gmail.com"
+          run: git branch -a
           git fetch origin new
           git merge remotes/origin/new --no-ff --no-edit 
           git push origin master
