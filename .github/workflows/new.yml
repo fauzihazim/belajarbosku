@@ -44,6 +44,7 @@ permissions:
 #         run: |
 #           git merge origin/new --allow-unrelated-histories
 #           git push origin master
+
 jobs:
   sync_develop:
     runs-on: ubuntu-latest

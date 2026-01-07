@@ -55,6 +55,7 @@ jobs:
         run: git reset --hard origin/new
       - name: Push to Master
         run: git push origin master --force
+        
 
   deploy:
     runs-on: ubuntu-latest
