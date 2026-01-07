@@ -11,8 +11,9 @@ app.get('/greet', (req, res) => {
 });
 
 // Start server only if not in test mode
-if (require.main === module) {
+if (require.main === module) { 
   const PORT = 3000;
+  
   app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
   });
