@@ -3,7 +3,7 @@ const app = express();
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('hallo index 123');
+  res.send('hallo index');
 });
 
 app.get('/greet', (req, res) => {
