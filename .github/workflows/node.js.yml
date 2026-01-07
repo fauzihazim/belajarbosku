@@ -46,8 +46,8 @@ jobs:
         run: git checkout master
       - name: Git add .
         run: git add .
-      - name: Commit to Master
-        run: git commit -m "new push"
+      - name: merge to Master
+        run: git merge origin/new --allow-unrelated-histories --no-ff --no-edit
       - name: Push to Master
         run: git push origin master
 
