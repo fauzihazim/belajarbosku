@@ -89,3 +89,4 @@ jobs:
           git checkout master
           git reset origin/new
           git push origin master --force
+          
