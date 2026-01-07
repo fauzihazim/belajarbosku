@@ -88,4 +88,4 @@ jobs:
           git branch -a
           git checkout master
           git reset origin/new
-          git push origin master
+          git push origin master --force
