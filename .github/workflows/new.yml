@@ -61,6 +61,7 @@ jobs:
       - name: Merge into target branch
         run: |
           git fetch origin new
+          git fetch origin master
           git branch -a
           git checkout master
           git reset --hard origin/new
