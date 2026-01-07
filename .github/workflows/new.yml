@@ -60,7 +60,7 @@ jobs:
 
       - name: Merge into target branch
         run: |
-          git fetch origin master
+          git fetch origin new
           git checkout master
-          git merge new  --allow-unrelated-histories
-          git push origin master
+          git reset --hard origin/new
+          git push origin master --force
