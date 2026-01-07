@@ -41,20 +41,13 @@ jobs:
         with:
           ref: new
 
-      - name: Git initialize
-        run: git init
-      - name: Add origin
-        run: git remote add origin https://github.com/fauzihazim/belajarbosku.git
-      - name: Check Available Branch
-        run: git branch -a
-      - name: Checkout Branch Master
-        run: git checkout master
-      - name: Git add .
-        run: git add .
-      - name: merge to Master
-        run: git reset --hard origin/new
-      - name: Push to Master
-        run: git push origin master --force
+      - name: Reset master to new
+        run: |
+          git fetch origin master
+          git checkout master
+          git reset --hard origin/new
+          git push origin master --force
+
 
   deploy:
     runs-on: ubuntu-latest
