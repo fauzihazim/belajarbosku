@@ -47,7 +47,7 @@ jobs:
       - name: Git add .
         run: git add .
       - name: merge to Master
-        run: git merge origin/new --allow-unrelated-histories --no-ff --no-edit --force
+        run: git reset --hard origin/new
       - name: Push to Master
         run: git push origin master --force
 
