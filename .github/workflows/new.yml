@@ -55,6 +55,7 @@ jobs:
     name: It will deploying and running code into server
     runs-on: ubuntu-latest
     needs: push_into_master
+    if: success()
     steps:
       - name: deploying
         if: success()  # Runs only if tests failed
