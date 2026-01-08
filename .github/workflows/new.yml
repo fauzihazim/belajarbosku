@@ -53,5 +53,7 @@ jobs:
     name: It will deploying and running code into server
     runs-on: ubuntu-lastest
     needs: push_into_master
+    if: ${{ success() }}
     steps:
-      - run: echo "deploying"
+      - name: deploying
+        run: echo "deploying"
