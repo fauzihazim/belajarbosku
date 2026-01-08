@@ -24,6 +24,8 @@ jobs:
       - run: npm i
       - run: npm run build --if-present
       - run: npm test
+      - name: Build Success
+        run: echo "Deploy Run"
 
   push_into_master:
     name: It will pushing code into branch master in Github
