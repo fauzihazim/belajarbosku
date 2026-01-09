@@ -71,7 +71,8 @@ jobs:
     timeout-minutes: 60
     needs: push_into_master
     steps:
-      - uses: actions/checkout@v4
+      - name: Push into directory
+        uses: actions/checkout@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
