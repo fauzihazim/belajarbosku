@@ -37,7 +37,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name ${{ secrets.USERNAME }}
+          git config user.name ${{ secrets.NAME }}
           git config user.email ${{ secrets.EMAIL }}
 
       - name: Merge into target branch
@@ -55,6 +55,15 @@ jobs:
     needs: push_into_master
     if: success()
     steps:
-      - name: deploying
-        if: success()
-        run: echo "deploying"
+      - name: Deploying Using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          run: |
+            echo "deploying"
+            cd ~/projects/learnGithubActions
+            git pull origin master
+            git status
+          
