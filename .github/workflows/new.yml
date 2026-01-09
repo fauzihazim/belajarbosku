@@ -24,8 +24,6 @@ jobs:
       - run: npm i
       - run: npm run build --if-present
       - run: npm test
-      - name: Build Success
-        run: echo "Deploy Run"
 
   push_into_master:
     name: It will pushing code into branch master in Github
@@ -39,7 +37,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name "fauzihazim"
+          git config user.name ${{ secrets.USERNAME }}
           git config user.email "fauzihazim28@gmail.com"
 
       - name: Merge into target branch
@@ -58,5 +56,5 @@ jobs:
     if: success()
     steps:
       - name: deploying
-        if: success()  # Runs only if tests failed
+        if: success()
         run: echo "deploying"
