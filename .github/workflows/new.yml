@@ -75,5 +75,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          run: npm install --save-dev wrangler@4
+          run: |
+            npm install --save-dev wrangler@4
+            cd ~/projects
+            ls
 
