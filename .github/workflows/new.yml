@@ -71,7 +71,7 @@ jobs:
     timeout-minutes: 60
     needs: push_into_master
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
         with:
