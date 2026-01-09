@@ -38,7 +38,7 @@ jobs:
       - name: Configure Git
         run: |
           git config user.name ${{ secrets.USERNAME }}
-          git config user.email "fauzihazim28@gmail.com"
+          git config user.email ${{ secrets.EMAIL }}
 
       - name: Merge into target branch
         run: |
