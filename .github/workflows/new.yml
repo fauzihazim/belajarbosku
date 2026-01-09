@@ -77,6 +77,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      - name: Install Wrangler v3
-        run: npm install --save-dev wrangler@3
+          run: npm install --save-dev wrangler@3
 
