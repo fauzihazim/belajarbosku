@@ -80,7 +80,7 @@ jobs:
       - name: Npm instakk wrangler
         run: npm install --save-dev wrangler@4
       - name: Cd to projects
-        run: cd ~/projects
+        run: ls
       - name: Show folder
         run: ls
 
