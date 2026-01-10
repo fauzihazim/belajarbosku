@@ -106,6 +106,4 @@ jobs:
             echo "Deploying to home lab..."
             cd ~/projects/learnGithubActions
             git pull origin master
-            npm install --production
-            npm run build --if-present
-            pm2 restart my-worker || node src/index.js
+            ls
