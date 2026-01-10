@@ -80,7 +80,7 @@ jobs:
       - name: Npm install wrangler
         run: npm install --save-dev wrangler@4
       - name: Cd to projects
-        run: ls
+        run: pwd
       - name: Show folder
         run: ls
 
