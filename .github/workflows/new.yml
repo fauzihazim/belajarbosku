@@ -66,44 +66,46 @@ jobs:
   #           cd ~/projects/learnGithubActions
   #           git pull origin master
   #           git status
-  deploy:
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    needs: push_into_master
-    steps:
-      - name: Push into directory
-        uses: actions/checkout@v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      
-      - name: Npm install wrangler
-        run: npm install --save-dev wrangler@4
-      - name: Cd to projects
-        run: pwd
-      - name: Show folder
-        run: ls
-
   # deploy:
-  #   name: Deploy to Home Lab Server
   #   runs-on: ubuntu-latest
   #   timeout-minutes: 60
   #   needs: push_into_master
-  #   if: success()
   #   steps:
-  #     - name: Checkout master branch
+  #     - name: Push into directory
   #       uses: actions/checkout@v4
   #       with:
-  #         ref: master
+  #         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  #         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      
+  #     - name: Npm install wrangler
+  #       run: npm install --save-dev wrangler@4
+  #     - name: Cd to projects
+  #       run: pwd
+  #     - name: Show folder
+  #       run: ls
 
-  #     - name: Deploying Using SSH
-  #       uses: appleboy/ssh-action@v1.2.0
-  #       with:
-  #         host: ${{ secrets.HOST }}
-  #         username: ${{ secrets.USERNAME }}
-  #         key: ${{ secrets.PRIVATE_KEY }}
-  #         script: |
-  #           echo "Deploying to home lab..."
-  #           cd ~/projects/learnGithubActions
-  #           git pull origin master
-  #           ls
+  deploy:
+    name: Deploy to Home Lab Server
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: push_into_master
+    if: success()
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Deploying Using SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 23
+          script: |
+            echo "Deploying to home lab..."
+            cd ~/projects/learnGithubActions
+            git pull origin master
+            pwd
+            ls
