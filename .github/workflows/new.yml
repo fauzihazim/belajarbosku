@@ -48,12 +48,6 @@ jobs:
           git checkout master
           git reset origin/new
           git push origin master --force
-      - id: ping
-        uses: soul-wish/ping-url-javascript-action@v1.5
-        with:
-          url: "https://google.com"
-      
-
 
   # deploy:
   #   name: It will deploying and running code into server
@@ -90,28 +84,38 @@ jobs:
   #     - name: Show folder
   #       run: ls
 
-  # deploy:
-  #   name: Deploy to Home Lab Server
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 60
-  #   needs: push_into_master
-  #   if: success()
-  #   steps:
-  #     - name: Checkout master branch
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: master
+  deploy:
+    name: Deploy to Home Lab Server
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: push_into_master
+    if: success()
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
 
-  #     - name: Deploying Using SSH
-  #       uses: appleboy/ssh-action@v1.2.0
-  #       with:
-  #         host: ${{ secrets.HOST }}
-  #         username: ${{ secrets.USERNAME }}
-  #         key: ${{ secrets.PRIVATE_KEY }}
-  #         port: 3000
-  #         script: |
-  #           echo "Deploying to home lab..."
-  #           cd ~/projects/learnGithubActions
-  #           git pull origin master
-  #           pwd
-  #           ls
+      # - name: Deploying Using SSH
+      #   uses: appleboy/ssh-action@v1.2.0
+      #   with:
+      #     host: ${{ secrets.HOST }}
+      #     username: ${{ secrets.USERNAME }}
+      #     key: ${{ secrets.PRIVATE_KEY }}
+      #     port: 3000
+      #     script: |
+      #       echo "Deploying to home lab..."
+      #       cd ~/projects/learnGithubActions
+      #       git pull origin master
+      #       pwd
+      #       ls
+
+      - name: Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+          version: latest
+          use-cache: 'false'
+          ping: 8.8.8.8,machine-1.my-tailnet.ts.net,machine-2
