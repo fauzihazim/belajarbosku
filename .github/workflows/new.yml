@@ -117,10 +117,12 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
           script: |
-            ping -c 4 192.168.1.90
             ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
+      - name: Push code to server via scp
+        run: |
+          scp -o StrictHostKeyChecking=no -r ./project root@${{ secrets.TS_DEPLOYMENT_IP }}:/projects
       # - name: Go to the Server
       #   run: |
       #     ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
