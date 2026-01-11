@@ -129,5 +129,5 @@ jobs:
       - name: Tailscale chack check
         uses: tailscale/github-action@v4
         with:
-          ping: 100.x.y.z,machine-1.my-tailnet.ts.net,machine-2
+          ping: 100.70.77.78,machine-1.my-tailnet.ts.net,machine-2
 
