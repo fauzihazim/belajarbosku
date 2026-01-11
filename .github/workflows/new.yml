@@ -119,4 +119,4 @@ jobs:
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       - name: Go to the Server
-        run: ssh root@${{ secrets.TS_DEPLOYMENT_IP }} "cd /projects && ls"
+        run: ssh root@${{ secrets.TS_DEPLOYMENT_IP }}
