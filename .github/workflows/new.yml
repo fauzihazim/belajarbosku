@@ -124,7 +124,7 @@ jobs:
         uses: FarisZR/tailscale-ssh-deploy@v1
         with:
             remote_host: root@100.70.77.78
-            directory: generated
+            directory: home
             remote_destination: /projects
             post_upload_command: ls /projects
       # # - name: Push code to server via scp
