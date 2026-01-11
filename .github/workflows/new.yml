@@ -48,6 +48,14 @@ jobs:
           git checkout master
           git reset origin/new
           git push origin master --force
+      - name: Ping google.com
+        run: |
+          ping -c 4 google.com
+      
+      - name: Ping local ip
+        run: |
+          ping -c 4 192.168.1.50
+
 
   # deploy:
   #   name: It will deploying and running code into server
@@ -84,28 +92,28 @@ jobs:
   #     - name: Show folder
   #       run: ls
 
-  deploy:
-    name: Deploy to Home Lab Server
-    runs-on: ubuntu-latest
-    timeout-minutes: 60
-    needs: push_into_master
-    if: success()
-    steps:
-      - name: Checkout master branch
-        uses: actions/checkout@v4
-        with:
-          ref: master
+  # deploy:
+  #   name: Deploy to Home Lab Server
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 60
+  #   needs: push_into_master
+  #   if: success()
+  #   steps:
+  #     - name: Checkout master branch
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: master
 
-      - name: Deploying Using SSH
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
-          port: 3000
-          script: |
-            echo "Deploying to home lab..."
-            cd ~/projects/learnGithubActions
-            git pull origin master
-            pwd
-            ls
+  #     - name: Deploying Using SSH
+  #       uses: appleboy/ssh-action@v1.2.0
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         key: ${{ secrets.PRIVATE_KEY }}
+  #         port: 3000
+  #         script: |
+  #           echo "Deploying to home lab..."
+  #           cd ~/projects/learnGithubActions
+  #           git pull origin master
+  #           pwd
+  #           ls
