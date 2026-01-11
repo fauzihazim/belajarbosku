@@ -120,4 +120,4 @@ jobs:
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       - name: Go to the Server
         run: |
-          ssh -t root@${{ secrets.TS_DEPLOYMENT_IP }}
+          ssh -t root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
