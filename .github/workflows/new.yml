@@ -120,9 +120,14 @@ jobs:
             ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
-      - name: Push code to server via scp
-        run: |
-          scp -o StrictHostKeyChecking=no -r . root@ubuntu-server-test:/projects
+      # - name: Push code to server via scp
+      #   run: |
+      #     scp -o StrictHostKeyChecking=no -r . root@ubuntu-server-test:/projects
       # - name: Go to the Server
       #   run: |
       #     ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
+      - name: Tailscale chack check
+        uses: tailscale/github-action@v4
+        with:
+          ping: 100.x.y.z,machine-1.my-tailnet.ts.net,machine-2
+
