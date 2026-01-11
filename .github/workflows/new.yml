@@ -117,4 +117,4 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
       - name: Check connectivity
-        run: ping -c 4 100.70.77.78
+        run: ping -c 4 100.70.77.7
