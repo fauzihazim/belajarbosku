@@ -118,4 +118,5 @@ jobs:
           tags: tag:ci
           version: latest
           use-cache: 'false'
-          ping: 8.8.8.8,machine-1.my-tailnet.ts.net,machine-2
+          script: |
+            echo "Tailscale hello world"
