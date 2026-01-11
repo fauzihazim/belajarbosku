@@ -122,7 +122,7 @@ jobs:
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       - name: Push code to server via scp
         run: |
-          scp -o StrictHostKeyChecking=no -r ./project root@${{ secrets.TS_DEPLOYMENT_IP }}:/projects
+          scp -o StrictHostKeyChecking=no -r /project root@${{ secrets.TS_DEPLOYMENT_IP }}:/projects
       # - name: Go to the Server
       #   run: |
       #     ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
