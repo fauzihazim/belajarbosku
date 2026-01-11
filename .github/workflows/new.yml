@@ -117,7 +117,7 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
           script: |
-            ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
+            ping -c 4 192.168.1.90
             ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
