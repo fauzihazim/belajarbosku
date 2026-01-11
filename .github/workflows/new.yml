@@ -116,8 +116,8 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
-          script: |
-            ping 100.70.77.78
+          # ping: 100.70.77.78,machine-1.my-tailnet.ts.net,machine-2
+          script: echo "Hello World"
       # - name: Check connectivity
       #   run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       # # - name: Push code to server via scp
