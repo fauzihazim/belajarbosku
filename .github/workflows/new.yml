@@ -29,8 +29,6 @@ jobs:
     name: It will pushing code into branch master in Github
     runs-on: ubuntu-latest
     needs: build-testing
-    env:
-      URL: 8.8.8.8
     steps:
       - name: Checkout source branch
         uses: actions/checkout@v4
@@ -51,7 +49,9 @@ jobs:
           git reset origin/new
           git push origin master --force
       - id: ping
-        uses: sisodiya2421/pinger@master
+        uses: soul-wish/ping-url-javascript-action@v1.5
+        with:
+          url: "https://google.com"
       
 
 
