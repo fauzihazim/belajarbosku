@@ -121,5 +121,3 @@ jobs:
       - name: Go to the Server
         run: |
           ssh -t root@${{ secrets.TS_DEPLOYMENT_IP }}
-          cd /projects
-          ls
