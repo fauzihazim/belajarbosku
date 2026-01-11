@@ -125,8 +125,8 @@ jobs:
         with:
             remote_host: root@${{ secrets.TS_DEPLOYMENT_IP }}
             directory: generated
-            remote_destination: /var/www/html
-            post_upload_command: systemctl restart nginx
+            remote_destination: /projects
+            post_upload_command: ls /projects
       # # - name: Push code to server via scp
       # #   run: |
       # #     scp -o StrictHostKeyChecking=no -r . root@ubuntu-server-test:/projects
