@@ -116,14 +116,13 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
-          # ping: 100.70.77.78,machine-1.my-tailnet.ts.net,machine-2
-          script: echo "Hello World"
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
+      
       - name: Start Deployment
         uses: FarisZR/tailscale-ssh-deploy@v1
         with:
-            remote_host: root@100.70.77.78
+            remote_host: root@${{ secrets.TS_DEPLOYMENT_IP }}
             directory: generated
             remote_destination: /projects
             post_upload_command: ls /projects
