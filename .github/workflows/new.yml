@@ -123,7 +123,7 @@ jobs:
       - name: Start Deployment
         uses: FarisZR/tailscale-ssh-deploy@v1
         with:
-            remote_host: root@${{ secrets.TS_DEPLOYMENT_IP }}
+            remote_host: root@100.70.77.78
             directory: generated
             remote_destination: /projects
             post_upload_command: ls /projects
