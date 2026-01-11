@@ -116,7 +116,8 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
-          run: ping 100.70.77.78
+          script: |
+            ping 100.70.77.78
       # - name: Check connectivity
       #   run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       # # - name: Push code to server via scp
