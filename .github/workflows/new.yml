@@ -116,8 +116,11 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
+          script: |
+            ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
+            ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
-      - name: Go to the Server
-        run: |
-          ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
+      # - name: Go to the Server
+      #   run: |
+      #     ssh -T root@${{ secrets.TS_DEPLOYMENT_IP }} 'sudo apt update'
