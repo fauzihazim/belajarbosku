@@ -120,8 +120,13 @@ jobs:
           script: echo "Hello World"
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
-      - name: Run SSH
-        run: ssh -o StrictHostKeyChecking=no root@${{ secrets.TS_DEPLOYMENT_IP }} "cd /projects && ls"
+      - name: Start Deployment
+        uses: FarisZR/tailscale-ssh-deploy@v1
+        with:
+            remote_host: root@${{ secrets.TS_DEPLOYMENT_IP }}
+            directory: generated
+            remote_destination: /var/www/html
+            post_upload_command: systemctl restart nginx
       # # - name: Push code to server via scp
       # #   run: |
       # #     scp -o StrictHostKeyChecking=no -r . root@ubuntu-server-test:/projects
