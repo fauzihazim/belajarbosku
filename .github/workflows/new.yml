@@ -118,16 +118,20 @@ jobs:
           tags: tag:ci
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
-      # - name: Bismillah Sukses Deploy
-      #   run: ssh -T root@ubuntu-server-test.tailf7c0ab.ts.net 'whoami'
       
-      - name: Start Deployment
-        uses: FarisZR/tailscale-ssh-deploy@v1
-        with:
-            remote_host: root@${{ secrets.TS_DEPLOYMENT_IP }}
-            directory: generated
-            remote_destination: /projects
-            post_upload_command: ls /projects
+      - name: Connect using
+        run: curl -fsSL https://tailscale.com/install.sh | sh && sudo tailscale up --auth-key=tskey-auth-kcUDb9MNEZ11CNTRL-diJEHiPQoRLfwbZt28DJSLfMJYMmQx7q3
+      - name: Bismillah Sukses Deploy
+        run: ssh -T root@ubuntu-server-test.tailf7c0ab.ts.net 'whoami'
+
+      
+      # - name: Start Deployment
+      #   uses: FarisZR/tailscale-ssh-deploy@v1
+      #   with:
+      #       remote_host: root@${{ secrets.TS_DEPLOYMENT_IP }}
+      #       directory: generated
+      #       remote_destination: /projects
+      #       post_upload_command: ls /projects
       # # - name: Push code to server via scp
       # #   run: |
       # #     scp -o StrictHostKeyChecking=no -r . root@ubuntu-server-test:/projects
