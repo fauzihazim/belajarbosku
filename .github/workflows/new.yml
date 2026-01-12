@@ -126,14 +126,27 @@ jobs:
       # - name: Bismillah Sukses Deploy
       #   run: ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@ubuntu-server-test.tailf7c0ab.ts.net "whoami"
 
-      
-      - name: Start Deployment
-        uses: FarisZR/tailscale-ssh-deploy@v1
-        with:
-            remote_host: root@100.123.209.14
-            directory: generated
-            remote_destination: /projects
-            post_upload_command: ls /projects
+      - name: SSH into VPS and Clone Repo
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          VPS_IP: "100.123.209.14" # Your VPS Tailscale IP
+        run: |
+          mkdir -p ~/.ssh
+          # Scan the VPS Tailscale IP to avoid manual fingerprint prompts
+          ssh-keyscan $VPS_IP >> ~/.ssh/known_hosts
+          # Load the private key
+          printf "%s" "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # Access the VPS and clone the repo
+          ssh user@$VPS_IP 
+
+      # - name: Start Deployment
+      #   uses: FarisZR/tailscale-ssh-deploy@v1
+      #   with:
+      #       remote_host: root@100.123.209.14
+      #       directory: generated
+      #       remote_destination: /projects
+      #       post_upload_command: ls /projects
       # # - name: Push code to server via scp
       # #   run: |
       # #     scp -o StrictHostKeyChecking=no -r . root@ubuntu-server-test:/projects
