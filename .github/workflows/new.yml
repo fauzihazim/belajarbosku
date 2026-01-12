@@ -117,7 +117,7 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
       - name: Check connectivity
-        run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
+        run: tailscale ping ubuntu-server-test.tailf7c0ab.ts.net
       - name: Debug Tailscale Identity
         run: tailscale status
       
