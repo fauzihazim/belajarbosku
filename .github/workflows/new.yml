@@ -120,6 +120,8 @@ jobs:
         run: tailscale ping ubuntu-server-test.tailf7c0ab.ts.net
       - name: Debug Tailscale Identity
         run: tailscale status
+      - name: Bimillah jalan
+        run: tailscale ssh root@ubuntu-server-test
       
       # - name: Connect using
       #   run: curl https://login.tailscale.com/uinv/ib8nxKxDSLJ9D3muQM1Ro11
