@@ -119,8 +119,8 @@ jobs:
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       
-      - name: Connect using
-        run: https://login.tailscale.com/uinv/ib8nxKxDSLJ9D3muQM1Ro11
+      # - name: Connect using
+      #   run: curl https://login.tailscale.com/uinv/ib8nxKxDSLJ9D3muQM1Ro11
       - name: Bismillah Sukses Deploy
         run: ssh -T root@ubuntu-server-test.tailf7c0ab.ts.net 'whoami'
 
