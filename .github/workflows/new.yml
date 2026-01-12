@@ -119,7 +119,7 @@ jobs:
       - name: Check connectivity
         run: ping -c 4 ${{ secrets.TS_DEPLOYMENT_IP }}
       - name: Bismillah Sukses Deploy
-        run: ssh root@machine-1.tailf0f027.ts.net 'whoami'
+        run: ssh root@ubuntu-server-test.tailf0f027.ts.net 'whoami'
       
       # - name: Start Deployment
       #   uses: FarisZR/tailscale-ssh-deploy@v1
