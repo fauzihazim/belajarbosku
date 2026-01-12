@@ -122,7 +122,7 @@ jobs:
       # - name: Connect using
       #   run: curl https://login.tailscale.com/uinv/ib8nxKxDSLJ9D3muQM1Ro11
       - name: Bismillah Sukses Deploy
-        run: ssh -T user@ubuntu-server-test.tailf7c0ab.ts.net 'whoami'
+        run: ssh -o StrictHostKeyChecking=no user@ubuntu-server-test.tailf7c0ab.ts.net 'whoami'
 
       
       # - name: Start Deployment
