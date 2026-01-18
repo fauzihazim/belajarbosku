@@ -120,6 +120,10 @@ jobs:
         run: tailscale ping ubuntu-server-test.tailf7c0ab.ts.net
       - name: Debug Tailscale Identity
         run: tailscale status
+      - name: Haha
+        run: ssh-keyscan -H ubuntu-server-test.tailf7c0ab.ts.net >> ~/.ssh/known_hosts
+      - name: Haha 2
+        run: ssh -o StrictHostKeyChecking=no root@ubuntu-server-test.tailf7c0ab.ts.net
       - name: Bimillah jalan
         run: ssh -tt root@ubuntu-server-test.tailf7c0ab.ts.net
       
