@@ -107,10 +107,9 @@ jobs:
                     export NVM_DIR="$HOME/.nvm"
                     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
                     cd ${{ secrets.APP_DIR }} # Specify the path to your app directory on the server
+                    ls
                     git pull
                     npm install
-                    npm run build
-                    pm2 restart {service_name} # Replace with your PM2 service name
 
   deploy:
     name: Deploy to Home Lab Server
