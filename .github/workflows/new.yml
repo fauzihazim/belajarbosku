@@ -144,7 +144,7 @@ jobs:
       - name: Debug Tailscale Identity
         run: tailscale status
       - name: Tailscale UP
-        run: sudo tailscale up --ssh --advertise-tags=ci
+        run: sudo tailscale up --ssh
       # - name: Haha
       #   run: ssh-keyscan -H ubuntu-server-test.tailf7c0ab.ts.net >> ~/.ssh/known_hosts
       - name: Haha 2
