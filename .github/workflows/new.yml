@@ -143,8 +143,6 @@ jobs:
         run: tailscale ping -c 4 ubuntu-server-test.tailf7c0ab.ts.net
       - name: Debug Tailscale Identity
         run: tailscale status
-      - name: Tailscale UP
-        run: sudo tailscale up --ssh --advertise-tags=ci
       # - name: Haha
       #   run: ssh-keyscan -H ubuntu-server-test.tailf7c0ab.ts.net >> ~/.ssh/known_hosts
       - name: Haha 2
